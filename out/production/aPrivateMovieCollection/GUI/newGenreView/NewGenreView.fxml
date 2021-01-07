@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="108.0" prefWidth="264.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txtGenre" layoutX="84.0" layoutY="25.0" />
+      <Label layoutX="32.0" layoutY="28.0" text="Genre:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="cancelBtn" layoutX="181.0" layoutY="59.0" mnemonicParsing="false" onAction="#cancel" text="Cancel" />
+      <Button fx:id="saveBtn" layoutX="130.0" layoutY="59.0" mnemonicParsing="false" onAction="#save" text="Save" />
+   </children>
+</AnchorPane>
