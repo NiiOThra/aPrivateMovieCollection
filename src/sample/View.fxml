@@ -45,7 +45,7 @@
             </AnchorPane>
             <AnchorPane layoutX="22.0" layoutY="144.0" prefHeight="424.0" prefWidth="220.0">
                <children>
-                  <Label text="Playlists" />
+                  <Label text="Genres" />
                   <TableView fx:id="playlistTable" layoutY="23.0" prefHeight="363.0" prefWidth="322.0">
                     <columns>
                       <TableColumn fx:id="playlistNameColumn" prefWidth="321.0" text="Genres" />
@@ -58,7 +58,7 @@
             </AnchorPane>
             <AnchorPane layoutX="364.0" layoutY="144.0" prefHeight="424.0" prefWidth="471.0">
                <children>
-                  <Label text="Songs on Playlist" />
+                  <Label text="Movies in Genres" />
                   <TableView fx:id="songsOnPlaylistTable" layoutY="23.0" prefHeight="363.0" prefWidth="471.0">
                      <columns>
                         <TableColumn fx:id="playlistSongsColumn" prefWidth="233.0" text="Title" />
@@ -73,7 +73,7 @@
             <AnchorPane layoutX="856.0" layoutY="144.0" prefHeight="424.0" prefWidth="322.0">
                <children>
                   <Button layoutY="386.0" mnemonicParsing="false" text="New" />
-                  <Label text="Songs" />
+                  <Label text="Movies" />
                   <TableView fx:id="songsTable" layoutY="23.0" prefHeight="363.0" prefWidth="322.0">
                      <columns>
                         <TableColumn fx:id="songTableTitleColumn" prefWidth="111.0" text="Title" />
