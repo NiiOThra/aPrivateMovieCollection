@@ -1,13 +1,16 @@
 package GUI;
 
-import BLL.MovieManager;
-import GUI.newGenreView.NewGenreController;
+import BLL.GenreManager;
+import GUI.newGenreView.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,13 +18,7 @@ import java.io.IOException;
 public class Controller {
 
     @FXML
-    public Button closeBtn;
-
-    @FXML
-    public Button newGenreBtn;
-/*
-    @FXML
-    private Button btnPlaySong;
+    private Button btnPlayVLC;
 
     @FXML
     private TextField txtFilter;
@@ -30,53 +27,72 @@ public class Controller {
     private Button btnRefresh;
 
     @FXML
-    private TableView<?> playlistTable;
+    private TableView<?> genresTable;
 
     @FXML
     private TableColumn<?, ?> playlistNameColumn;
 
     @FXML
-    private TableView<?> songsOnPlaylistTable;
+    private TableView<?> moviesInGenresTable;
 
     @FXML
-    private TableColumn<?, ?> playlistSongsColumn;
+    private TableColumn<?, ?> titleColumn;
 
     @FXML
-    private TableColumn<?, ?> playlistSongsColumn1;
+    private TableColumn<?, ?> genresColumn;
 
     @FXML
-    private TableColumn<?, ?> playlistSongsColumn11;
+    private TableColumn<?, ?> ratingColumn;
 
     @FXML
-    private TableView<?> songsTable;
+    private TableColumn<?, ?> durationColumn;
 
     @FXML
-    private TableColumn<?, ?> songTableTitleColumn;
+    private Button closeBtn;
 
     @FXML
-    private TableColumn<?, ?> songTableArtistColumn;
+    private Button newGenresBtn;
+
+
+
+    private static final GenreManager gM = GenreManager.getInstance();
+
+
+
+
+
 
     @FXML
-    private TableColumn<?, ?> songTableCategoryColumn;
-
- */
-private static final MovieManager gM = MovieManager.getInstance();
-    public void close(ActionEvent actionEvent) {
+    void close(ActionEvent event) {
         Stage stage = (Stage) closeBtn.getScene().getWindow();
         stage.close();
+    }
+
+    public void dialogNewGenre(ActionEvent actionEvent) {
+        startNewGenreView("NewGenreView.fxml");
     }
 
 
 
 
-    public void startNewSongView(String fxmlPath) {
+
+
+
+
+
+
+
+
+
+
+    public void startNewGenreView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
-            NewGenreController newGenreController = loader.getController();
-            newGenreController.setMainController(this);
-            newGenreController.setManager(this.gM);
+            NewGenreController newPlaylistController = loader.getController();
+            newPlaylistController.setMainController(this);
+            newPlaylistController.setManager(this.gM);
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
             stage.show();

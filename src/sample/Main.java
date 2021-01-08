@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private final static String APP_TITLE = "PrivateMovieCollection";
+    private final static String APP_TITLE = "Private Movie Collection";
     private final static int APP_WIDTH = 1200;
     private final static int APP_HEIGHT = 580;
 
