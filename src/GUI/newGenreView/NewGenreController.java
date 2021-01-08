@@ -1,13 +1,13 @@
 package GUI.newGenreView;
 
-import BLL.GenreManager;
+import BLL.MovieManager;
 import GUI.Controller;
 
 public class NewGenreController {
 
-    private GenreManager genreManager;
+    private MovieManager genreManager;
 
-    public void setManager(GenreManager gM) {
+    public void setManager(MovieManager gM) {
         this.genreManager = gM;
     }
     public void setMainController(Controller controller) {

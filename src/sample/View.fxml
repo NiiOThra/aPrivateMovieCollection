@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 
-
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Controller">
    <center>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="1200.0">
@@ -51,7 +50,7 @@
                       <TableColumn fx:id="playlistNameColumn" prefWidth="321.0" text="Genres" />
                     </columns>
                   </TableView>
-                  <Button fx:id="newGenreBtn" layoutY="386.0" mnemonicParsing="false" text="New" />
+                  <Button layoutY="386.0" mnemonicParsing="false" onAction="#dialogNewGenre" text="New" />
                   <Button layoutX="78.0" layoutY="385.0" mnemonicParsing="false" text="Edit" />
                   <Button layoutX="148.0" layoutY="385.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="72.0" text="Delete" />
                </children>

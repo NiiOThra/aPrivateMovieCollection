@@ -1,6 +1,6 @@
 package GUI;
 
-import BLL.GenreManager;
+import BLL.MovieManager;
 import GUI.newGenreView.NewGenreController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,11 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class Controller {
@@ -63,7 +60,7 @@ public class Controller {
     private TableColumn<?, ?> songTableCategoryColumn;
 
  */
-private static final GenreManager gM = GenreManager.getInstance();
+private static final MovieManager gM = MovieManager.getInstance();
     public void close(ActionEvent actionEvent) {
         Stage stage = (Stage) closeBtn.getScene().getWindow();
         stage.close();
