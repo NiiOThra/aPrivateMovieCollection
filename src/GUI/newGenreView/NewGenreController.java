@@ -13,11 +13,11 @@ import java.sql.SQLException;
 public class NewGenreController {
 
     @FXML
-    public Button cancelBttn;
+    public Button cancelBtn;
     @FXML
     public Button btnSave;
     @FXML
-    public TextField txtPlaylistName;
+    public TextField txtGenreName;
 
     private GUI.Controller mainController;
 
@@ -30,7 +30,7 @@ public class NewGenreController {
     }
 
     public void close(ActionEvent actionEvent) {
-        Stage stage = (Stage) cancelBttn.getScene().getWindow();
+        Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
     }
 
