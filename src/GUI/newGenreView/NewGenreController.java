@@ -30,7 +30,8 @@ public class NewGenreController {
     }
 
     public void close(ActionEvent actionEvent) {
-        doClose();
+        Stage stage = (Stage) cancelBttn.getScene().getWindow();
+        stage.close();
     }
 
 }
