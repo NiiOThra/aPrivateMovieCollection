@@ -1,14 +1,13 @@
 package GUI.newGenreView;
 
 import BLL.GenreManager;
+import BLL.MovieManager;
 import GUI.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.sql.SQLException;
 
 public class NewGenreController {
 
@@ -26,6 +25,7 @@ public class NewGenreController {
     }
 
     private void doClose(){
+
 
     }
 

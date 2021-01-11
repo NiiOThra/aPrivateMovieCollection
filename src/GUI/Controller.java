@@ -1,6 +1,8 @@
 package GUI;
 
+import BE.Movie;
 import BLL.GenreManager;
+import DAL.DBManager;
 import GUI.aboutView.AboutController;
 import GUI.newGenreView.*;
 import javafx.event.ActionEvent;
@@ -53,6 +55,17 @@ public class Controller {
 
     @FXML
     private Button newGenresBtn;
+
+    @FXML
+    private Button btnDebug;
+
+    public void debug(ActionEvent actionEvent)
+    {
+        DBManager dbMgr = new DBManager();
+
+
+       // dbMgr.addMovie(new Movie(){});
+    }
 
 
     public void close(ActionEvent actionEvent) {
