@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,8 +21,8 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("View.fxml"));
         Parent root = loader.load();
-       // Controller controller = loader.getController();
-     //   controller.refreshUI();
+        Controller controller = loader.getController();
+       // controller.refreshUI();
         primaryStage.setTitle(APP_TITLE);
         primaryStage.setScene(new Scene(root, APP_WIDTH, APP_HEIGHT));
         primaryStage.show();

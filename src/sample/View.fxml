@@ -19,24 +19,19 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
+                    <MenuItem mnemonicParsing="false" onAction="#close" text="Exit" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem mnemonicParsing="false" onAction="#aboutClicked" text="About" />
                   </items>
                 </Menu>
               </menus>
             </MenuBar>
             <AnchorPane layoutY="25.0" prefHeight="107.0" prefWidth="1200.0">
                <children>
-                  <Button fx:id="btnPlayVLC" layoutX="555.0" layoutY="28.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Play in VLC" />
+                  <Button fx:id="btnPlayMovieInVLC" layoutX="555.0" layoutY="28.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Play in VLC" />
                   <TextField fx:id="txtFilter" layoutX="917.0" layoutY="28.0" prefHeight="25.0" prefWidth="185.0" />
                   <Label layoutX="869.0" layoutY="32.0" prefHeight="17.0" prefWidth="48.0" text="Filter:" />
                   <Button fx:id="btnRefresh" layoutX="1115.0" layoutY="28.0" mnemonicParsing="false" text="Refresh UI" />
@@ -47,10 +42,10 @@
                   <Label text="Genres" />
                   <TableView fx:id="genresTable" layoutY="23.0" prefHeight="363.0" prefWidth="298.0">
                     <columns>
-                      <TableColumn fx:id="playlistNameColumn" prefWidth="321.0" text="Genres" />
+                      <TableColumn fx:id="genresColumn" prefWidth="321.0" text="Genres" />
                     </columns>
                   </TableView>
-                  <Button fx:id="newGenresBtn" layoutY="386.0" mnemonicParsing="false" onAction="#dialogNewGenre" text="New" />
+                  <Button fx:id="btnNewGenre" layoutY="386.0" mnemonicParsing="false" onAction="#dialogNewGenre" text="New" />
                   <Button layoutX="78.0" layoutY="385.0" mnemonicParsing="false" text="Edit" />
                   <Button layoutX="148.0" layoutY="385.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="72.0" text="Delete" />
                </children>
@@ -69,7 +64,6 @@
                   <Button layoutX="416.0" layoutY="386.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Delete" />
                   <Button layoutX="350.0" layoutY="386.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Edit" />
                   <Button layoutX="229.0" layoutY="386.0" mnemonicParsing="false" text="Add movie" />
-                  <Button fx:id="closeBtn" layoutX="783.0" layoutY="386.0" mnemonicParsing="false" onAction="#close" text="Close" />
                </children>
             </AnchorPane>
          </children>

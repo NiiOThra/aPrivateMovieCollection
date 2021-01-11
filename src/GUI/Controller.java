@@ -1,6 +1,7 @@
 package GUI;
 
 import BLL.GenreManager;
+import GUI.aboutView.AboutController;
 import GUI.newGenreView.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -54,45 +55,41 @@ public class Controller {
     private Button newGenresBtn;
 
 
-
-    private static final GenreManager gM = GenreManager.getInstance();
-
-
-
-
-
-
-    @FXML
-    void close(ActionEvent event) {
+    public void close(ActionEvent actionEvent) {
         Stage stage = (Stage) closeBtn.getScene().getWindow();
         stage.close();
     }
 
-    public void dialogNewGenre(ActionEvent actionEvent) {
-        startNewGenreView("NewGenreView.fxml");
+    public void aboutClicked() {
+        startAboutView("aboutView/AboutView.fxml");
+    }
+    public void dialogNewGenre() {
+        startNewGenreView("newGenreView/NewGenreView.fxml");
     }
 
+    public void startAboutView(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlPath));
+            Parent mainLayout = loader.load();
+            AboutController aboutController = loader.getController();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainLayout));
+            stage.show();
+        } catch (IOException e) {
 
-
-
-
-
-
-
-
-
-
-
-
+            e.printStackTrace();
+        }
+    }
 
     public void startNewGenreView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
-            NewGenreController newPlaylistController = loader.getController();
-            newPlaylistController.setMainController(this);
-            newPlaylistController.setManager(this.gM);
+            NewGenreController newGenreController = loader.getController();
+            //    newPlaylistController.setMainController(this);
+            //    newPlaylistController.setManager(this.sM);
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
             stage.show();
@@ -100,7 +97,4 @@ public class Controller {
             e.printStackTrace();
         }
     }
-
-
-
 }

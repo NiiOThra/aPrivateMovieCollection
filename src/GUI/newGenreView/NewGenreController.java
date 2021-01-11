@@ -8,49 +8,29 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.sql.SQLException;
+
 public class NewGenreController {
 
+    @FXML
+    public Button cancelBttn;
+    @FXML
+    public Button btnSave;
+    @FXML
+    public TextField txtPlaylistName;
 
     private GUI.Controller mainController;
-    private GenreManager gM;
 
-
-    @FXML
-    private TextField txtGenre;
-
-    @FXML
-    private Button cancelBtn;
-
-    @FXML
-    private Button saveBtn;
-
-    public void setManager(GenreManager gM) {
-        this.gM = gM;
-    }
-    @FXML
-    void cancel(ActionEvent event) {
-        doClose();
-    }
-    private void doClose()
-    {
-       // mainController.reloadPlaylistsTable();
-        Stage stage = (Stage) cancelBtn.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    void save(ActionEvent event) {
-
-    }
-
-
-
-
-    public NewGenreController(Controller mainController) {
+    public void setMainController(Controller mainController) {
         this.mainController = mainController;
     }
 
+    private void doClose(){
 
-    public void setMainController(Controller controller) {
     }
+
+    public void close(ActionEvent actionEvent) {
+        doClose();
+    }
+
 }
