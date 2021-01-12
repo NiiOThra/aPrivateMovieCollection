@@ -70,7 +70,46 @@ public class DBManager {
         return timestamp.toString();
     }
 
+    /**
+     * Returns a song based on the ID
+     *
+     * @param movieId the id of the song
+     * @return the given song
+     * @throws SQLException
+     */
+    public Movie getMovieByID( int movieId ) throws SQLException{
+        try( Connection con = dataSource.getConnection() ){
+            String sql = "SELECT * FROM Movie WHERE ID = ?";
+            PreparedStatement ps = con.prepareStatement( sql );
+            ps.setInt( 1, movieId );
 
+            ResultSet rs = ps.executeQuery();
+            if( rs.next() ){
+                return getOneMovie( rs );
+            }
+        }
+        return null;
+    }
+    /**
+     * Returns a song based on the ID
+     *
+     * @param title the id of the song
+     * @return the given song
+     * @throws SQLException
+     */
+    public Movie getMovieByName(String title ) throws SQLException{
+        try( Connection con = dataSource.getConnection() ){
+            String sql = "SELECT * FROM Movie WHERE Title = ?";
+            PreparedStatement ps = con.prepareStatement( sql );
+            ps.setString( 1, title );
+
+            ResultSet rs = ps.executeQuery();
+            if( rs.next() ){
+                return getOneMovie( rs );
+            }
+        }
+        return null;
+    }
     /**
      * Adds a song to the database
      *
@@ -147,8 +186,8 @@ public class DBManager {
     /**
      * Adds a song to a playlist
      *
-     * @param song the song you want to add
-     * @param playlist the playlist the song is added to
+     * @param movie the song you want to add
+     * @param genre the playlist the song is added to
      * @throws SQLException
      */
     public void addGenreToMovie( Movie movie, Genre genre ) throws SQLException{
@@ -186,28 +225,30 @@ public class DBManager {
             return genres;
         }
     }
+
+
     /**
-     * Returns a song based on the ID
+     * Returns a playlist from the database, based on the ID
      *
-     * @param movieId the id of the song
-     * @return the given song
+     * @param searchName the id of the playlist
+     * @return the Playlist
      * @throws SQLException
      */
-    public Movie getMovieByID( int movieId ) throws SQLException{
+    public Genre getGenreByName(String searchName ) throws SQLException{
         try( Connection con = dataSource.getConnection() ){
-            String sql = "SELECT * FROM Movie WHERE ID = ?";
+            String sql = "SELECT * FROM Genre WHERE GenreName = ?";
             PreparedStatement ps = con.prepareStatement( sql );
-            ps.setInt( 1, movieId );
+            ps.setString( 1, searchName );
 
             ResultSet rs = ps.executeQuery();
             if( rs.next() ){
-                return getOneMovie( rs );
+                int id = rs.getInt( 1 );
+                String name = rs.getString( 2 );
+                return new Genre( id, name );
             }
         }
         return null;
     }
-
-
     /**
      * Returns a playlist from the database, based on the ID
      *
@@ -311,4 +352,6 @@ public class DBManager {
         keys.next();
         return keys.getInt( 1 );
     }
+
+
 }

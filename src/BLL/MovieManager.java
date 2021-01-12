@@ -1,6 +1,10 @@
 package BLL;
 
+import BE.Genre;
+import BE.Movie;
 import DAL.DBManager;
+
+import java.util.ArrayList;
 
 public class MovieManager {
 
@@ -21,27 +25,27 @@ public class MovieManager {
             return instance;
         }
     }
-    public void Add() {
-
+    public Movie add(Movie movie) throws Exception
+    {
+        return dbMgr.addMovie(movie);
     }
 
-
-    public void Delete() {
-
+    public void delete(Movie movie) throws Exception {
+        dbMgr.deleteGenreByID(movie.getId());
+    }
+    public void update(Movie movie) throws Exception {
+        dbMgr.updateMovie(movie);
+    }
+    public Movie getById(int movieId) throws Exception
+    {
+        return dbMgr.getMovieByID(movieId);
+    }
+    public Movie getByName(String name) throws Exception
+    {
+        return dbMgr.getMovieByName(name);
     }
 
-
-    public void Update() {
-
-    }
-
-
-    public void Get() {
-
-    }
-
-
-    public void GetById(int Id) {
-
+    public ArrayList<Movie> getAllMovies()throws Exception {
+        return dbMgr.getAllMovies();
     }
 }

@@ -1,7 +1,10 @@
 package BLL;
 
 import BE.Genre;
+import BE.Movie;
 import DAL.DBManager;
+
+import java.sql.SQLException;
 
 public class GenreManager  {
 
@@ -22,23 +25,28 @@ public class GenreManager  {
             return instance;
         }
     }
-
-    public Genre Add(String genre) throws Exception
+    public Genre add(String genre) throws Exception
     {
         return dbMgr.addGenre(new Genre(genre));
     }
-
-    public void Delete() {
-
+    public void delete(Genre genre) throws Exception
+    {
+        dbMgr.deleteGenreByID(genre.getId());
     }
-    public void Update() {
-
+    public void update(Genre genre) throws Exception
+    {
+        dbMgr.updateGenre(genre);
     }
-
-    public void Get() {
-
+    public Genre getById(int genreId) throws Exception
+    {
+        return dbMgr.getGenreByID(genreId);
     }
-    public void GetById(int Id) {
-
+    public Genre getByName(String name) throws Exception
+    {
+        return dbMgr.getGenreByName(name);
+    }
+    public void addGenreToMovie(Genre genre, Movie movie) throws Exception
+    {
+        dbMgr.addGenreToMovie(movie, genre);
     }
 }

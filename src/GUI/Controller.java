@@ -3,6 +3,7 @@ package GUI;
 import BE.Genre;
 import BE.Movie;
 import BLL.GenreManager;
+import BLL.MovieManager;
 import DAL.DBManager;
 import GUI.aboutView.AboutController;
 import GUI.newGenreView.*;
@@ -67,30 +68,31 @@ public class Controller {
 
     public void debug(ActionEvent actionEvent)
     {
-        DBManager dbMgr = new DBManager();
+        MovieManager mMgr = MovieManager.getInstance();
+        GenreManager gMgr = GenreManager.getInstance();
 
         java.util.Date date = new java.util.Date();
 
         try {
 
-            ArrayList<Movie> movies = dbMgr.getAllMovies();
+            ArrayList<Movie> movies = mMgr.getAllMovies();
             Movie m = movies.get(2);
-            dbMgr.addGenreToMovie(m, dbMgr.addGenre(new Genre("TestGenre")));
+            gMgr.addGenreToMovie(gMgr.add("TestGenre"),m);
 
-            Genre addedGenre = dbMgr.addGenre(new Genre("TestGenre"));
+            Genre addedGenre = gMgr.add("TestGenre");
 
             addedGenre.setName("UpdatedGenre");
-            dbMgr.updateGenre(addedGenre);
+            gMgr.update(addedGenre);
 
-            dbMgr.deleteGenreByID(addedGenre.getId());
+            gMgr.delete(addedGenre);
 
-            Movie addedMovie = dbMgr.addMovie(new Movie("Test",2f,2f, "test",new java.sql.Timestamp(date.getTime()), new ArrayList<Genre>()));
+            Movie addedMovie = mMgr.add(new Movie("Test",2f,2f, "test",new java.sql.Timestamp(date.getTime()), new ArrayList<Genre>()));
             addedMovie.setTitle("UpdateMovie");
-            dbMgr.updateMovie(addedMovie);
+            mMgr.update(addedMovie);
 
-            dbMgr.deleteMovieByID(addedMovie.getId());
+            mMgr.delete(addedMovie);
 
-        } catch (SQLException throwables) {
+        } catch (Exception throwables) {
             throwables.printStackTrace();
         }
     }
