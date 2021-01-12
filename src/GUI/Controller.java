@@ -1,5 +1,6 @@
 package GUI;
 
+import BE.Genre;
 import BE.Movie;
 import BLL.GenreManager;
 import DAL.DBManager;
@@ -16,7 +17,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.sql.rowset.JdbcRowSet;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Controller {
 
@@ -63,8 +69,30 @@ public class Controller {
     {
         DBManager dbMgr = new DBManager();
 
+        java.util.Date date = new java.util.Date();
 
-       // dbMgr.addMovie(new Movie(){});
+        try {
+
+            ArrayList<Movie> movies = dbMgr.getAllMovies();
+            Movie m = movies.get(2);
+            dbMgr.addGenreToMovie(m, dbMgr.addGenre(new Genre("TestGenre")));
+
+            Genre addedGenre = dbMgr.addGenre(new Genre("TestGenre"));
+
+            addedGenre.setName("UpdatedGenre");
+            dbMgr.updateGenre(addedGenre);
+
+            dbMgr.deleteGenreByID(addedGenre.getId());
+
+            Movie addedMovie = dbMgr.addMovie(new Movie("Test",2f,2f, "test",new java.sql.Timestamp(date.getTime()), new ArrayList<Genre>()));
+            addedMovie.setTitle("UpdateMovie");
+            dbMgr.updateMovie(addedMovie);
+
+            dbMgr.deleteMovieByID(addedMovie.getId());
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
 

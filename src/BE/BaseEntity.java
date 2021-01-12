@@ -1,13 +1,13 @@
 package BE;
 
 public abstract class BaseEntity {
-    private int Id;
+    private int id;
 
     public void setId(int id) {
-        this.Id = id;
+        this.id = id;
     }
 
     public int getId() {
-        return Id;
+        return id;
     }
 }
