@@ -57,14 +57,14 @@
                      <columns>
                         <TableColumn fx:id="titleColumn" prefWidth="346.0" text="Title" />
                         <TableColumn fx:id="genresColumn" minWidth="0.0" prefWidth="408.0" text="Genre(s)" />
-                        <TableColumn fx:id="ratingColumn" minWidth="7.0" prefWidth="85.0" text="IMDB Rating" />
-                        <TableColumn fx:id="durationColumn" minWidth="0.0" prefWidth="76.0" text="My Rating" />
-                        <TableColumn fx:id="ratingColumn1" minWidth="7.0" prefWidth="77.0" text="Duration" />
+                        <TableColumn fx:id="durationColumn" minWidth="7.0" prefWidth="68.0" text="Duration" />
+                        <TableColumn fx:id="myRatingColumn" minWidth="0.0" prefWidth="76.0" text="My Rating" />
+                        <TableColumn fx:id="imdbRatingColumn" minWidth="7.0" prefWidth="94.0" text="IMDB Rating" />
                      </columns>
                   </TableView>
-                  <Button layoutX="416.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Delete" />
-                  <Button layoutX="350.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Edit" />
-                  <Button layoutX="229.0" layoutY="392.0" mnemonicParsing="false" text="Add movie" />
+                  <Button layoutX="938.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Delete" />
+                  <Button layoutX="877.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Edit" />
+                  <Button layoutX="797.0" layoutY="392.0" mnemonicParsing="false" text="Add movie" />
                </children>
             </AnchorPane>
          </children>
