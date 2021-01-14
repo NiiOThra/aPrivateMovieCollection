@@ -59,7 +59,7 @@ public class DBManager {
         float myRating = rs.getFloat( 4 );
         String fileLink = rs.getString( 5 );
         java.sql.Timestamp lastView = ConvertStringToTimestamp(rs.getString( 6 ));
-        ArrayList<Genre> genres = getGenresInMovie(id);
+        List<Genre> genres = getGenresInMovie(id);
         return new Movie( id,title, myRating, imdbRating, fileLink, lastView, genres );
     }
 
@@ -158,6 +158,17 @@ public class DBManager {
             }
         }
     }
+    public void deleteGenresOnMovie( int movieId) throws SQLException{
+        try( Connection con = dataSource.getConnection() ){
+            String sql = "DELETE FROM MovieGenre WHERE MovieId = ?;";
+
+            PreparedStatement ps = con.prepareStatement( sql );
+            ps.setInt( 1, movieId);
+            int affectedRows = ps.executeUpdate();
+            if( affectedRows == 0 ){
+            }
+        }
+    }
     /**
      * Updates a song in the database
      *
@@ -197,6 +208,8 @@ public class DBManager {
             ps.setInt( 1, genre.getId() );
             ps.setInt( 2, movie.getId() );
 
+
+
             int affectedRows = ps.executeUpdate();
             if( affectedRows == 0 ){
                 throw new SQLException( "Unable to add song to playlist." );
@@ -210,7 +223,7 @@ public class DBManager {
      * @return a list of songs linked to the same playlist
      * @throws SQLException
      */
-    public ArrayList<Genre> getGenresInMovie(int movieId ) throws SQLException{
+    public List<Genre> getGenresInMovie(int movieId ) throws SQLException{
         try( Connection con = dataSource.getConnection() ){
             String sql = "SELECT * FROM MovieGenre WHERE MovieGenre.MovieId = ?";
             PreparedStatement ps = con.prepareStatement( sql );
@@ -218,7 +231,7 @@ public class DBManager {
 
             ResultSet rs = ps.executeQuery();
 
-            ArrayList<Genre> genres = new ArrayList<Genre>();
+            List<Genre> genres = new ArrayList<Genre>();
             while( rs.next() ){
                 genres.add(getGenreByID(rs.getInt(2)) );
             }

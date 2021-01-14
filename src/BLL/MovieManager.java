@@ -46,6 +46,12 @@ public class MovieManager {
     }
 
     public void update(Movie movie) throws Exception {
+        dbMgr.deleteGenresOnMovie(movie.getId());
+
+        for (Genre g : movie.getGenres()) {
+            dbMgr.addGenreToMovie(movie, g);
+        }
+
         dbMgr.updateMovie(movie);
     }
 
@@ -61,5 +67,34 @@ public class MovieManager {
         return dbMgr.getAllMovies();
     }
 
-    
+    public List<Movie> getExpiredMovies() throws Exception {
+        List<Movie> expiredMovies = new ArrayList<>();
+        var allMovies = dbMgr.getAllMovies();
+
+        for (Movie m : allMovies) {
+            // Check if older than 2 years
+            var timeDiff = compareTwoTimeStamps(new Timestamp(System.currentTimeMillis()), m.getLastView());
+            if (timeDiff > 365 * 2) // if time difference is over 365 days times 2.
+            {
+                expiredMovies.add(m);
+            } else if (m.getMyRating() < 6) {
+                expiredMovies.add(m);
+            }
+        }
+
+        return expiredMovies;
+    }
+
+    public static long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime) {
+        long milliseconds1 = oldTime.getTime();
+        long milliseconds2 = currentTime.getTime();
+
+        long diff = milliseconds2 - milliseconds1;
+        long diffSeconds = diff / 1000;
+        long diffMinutes = diff / (60 * 1000);
+        long diffHours = diff / (60 * 60 * 1000);
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+        return diffDays;
+    }
 }

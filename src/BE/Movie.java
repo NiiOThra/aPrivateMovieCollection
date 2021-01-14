@@ -10,7 +10,7 @@ public class Movie extends BaseEntity {
     private String title;
     private float myRating;
     private float imdbRating;
-    private ArrayList<Genre> genres;
+    private List<Genre> genres;
     private String fileLink;
     private java.sql.Timestamp lastView;
 
@@ -33,7 +33,7 @@ public class Movie extends BaseEntity {
      * @param filename Filename of the movie.
      */
 
-    public Movie(String title, float myRating, float imdbRating, String fileLink, java.sql.Timestamp lastView, ArrayList<Genre> genres) {
+    public Movie(String title, float myRating, float imdbRating, String fileLink, java.sql.Timestamp lastView, List<Genre> genres) {
         this.setTitle(title);
         this.setMyRating(myRating);
         this.setImdbRating(imdbRating);
@@ -51,7 +51,7 @@ public class Movie extends BaseEntity {
      * @param category Category of the movie.
      * @param filepath Filename of the movie.
      */
-    public Movie(int id, String title, float myRating, float imdbRating, String fileLink, java.sql.Timestamp lastView, ArrayList<Genre> genres) {
+    public Movie(int id, String title, float myRating, float imdbRating, String fileLink, java.sql.Timestamp lastView, List<Genre> genres) {
         this.setId(id);
         this.setTitle(title);
         this.setMyRating(myRating);
@@ -59,6 +59,10 @@ public class Movie extends BaseEntity {
         this.setGenres(genres);
         this.setFileLink(fileLink);
         this.setLastView(lastView);
+    }
+
+    public Movie() {
+        this.setId(-1);
     }
 
     public void setTitle(String title) {
@@ -85,11 +89,11 @@ public class Movie extends BaseEntity {
         return imdbRating;
     }
 
-    public void setGenres(ArrayList<Genre> genres) {
+    public void setGenres(List<Genre> genres) {
         this.genres = genres;
     }
 
-    public ArrayList<Genre> getGenres() {
+    public List<Genre> getGenres() {
         return genres;
     }
 
@@ -117,7 +121,7 @@ public class Movie extends BaseEntity {
      */
     @Override
     public String toString() {
-        return this.getTitle();
+        return this.getTitle() ;
     }
 
     public String getGenresString() {

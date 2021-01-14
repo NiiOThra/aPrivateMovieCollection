@@ -22,7 +22,8 @@ public class Main extends Application {
         loader.setLocation(getClass().getResource("View.fxml"));
         Parent root = loader.load();
         Controller controller = loader.getController();
-       // controller.refreshUI();
+        controller.ShowExpiredMoviesBox();
+        controller.refreshUI();
         primaryStage.setTitle(APP_TITLE);
         primaryStage.setScene(new Scene(root, APP_WIDTH, APP_HEIGHT));
         primaryStage.show();

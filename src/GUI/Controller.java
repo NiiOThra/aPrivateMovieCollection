@@ -6,6 +6,10 @@ import BLL.GenreManager;
 import BLL.MovieManager;
 import GUI.Dialog.DeleteDialogController;
 import GUI.aboutView.AboutController;
+import GUI.addMovieView.AddMovieController;
+import GUI.createUpdateMovieView.CreateEditMovieController;
+import GUI.editGenreView.EditGenreController;
+import GUI.editMovieView.EditMovieController;
 import GUI.newGenreView.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -184,7 +188,7 @@ public class Controller {
         }
     }
 
-    private void refreshUI() {
+    public void refreshUI() {
         reloadGenresTable();
         reloadMoviesTable();
     }
@@ -195,6 +199,8 @@ public class Controller {
 
         try {
             refreshUI();
+
+            var expiredMovies = mMgr.getExpiredMovies();
 
             Movie movie = mMgr.getById(3);
             String test = movie.getGenresString();
@@ -242,7 +248,7 @@ public class Controller {
     }
 
     public void dialogEditGenre() {
-        startNewGenreView("editGenreView/EditGenreView.fxml");
+        startEditGenreView("editGenreView/EditGenreView.fxml");
     }
 
     public void dialogDeleteGenre() {
@@ -259,11 +265,14 @@ public class Controller {
     }
 
     public void dialogNewMovie() {
-        startNewGenreView("addGenreView/AddMovieView.fxml");
+        startNewMovieView("createUpdateMovieView/CreateEditMovieView.fxml");
     }
 
     public void dialogEditMovie() {
-        startNewGenreView("editMovieView/EditMovieView.fxml");
+        var movieToUpdate = (Movie) moviesTable.getSelectionModel().getSelectedItem();
+        if (movieToUpdate != null) {
+            startEditMovieView("createUpdateMovieView/CreateEditMovieView.fxml", movieToUpdate);
+        }
     }
 
     public void dialogDeleteMovie() {
@@ -277,6 +286,31 @@ public class Controller {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void ShowExpiredMoviesBox() {
+        try {
+            var expiredMovies = mMgr.getExpiredMovies();
+
+            String moviesString = "";
+
+            for (Movie m : expiredMovies) {
+                moviesString += m.toString() + "\n";
+            }
+
+            ButtonType yes = new ButtonType("Understood", ButtonBar.ButtonData.OK_DONE);
+            Alert alert = new Alert(Alert.AlertType.WARNING,
+                    moviesString,
+                    yes);
+
+            alert.setTitle(expiredMovies.stream().count() + " expired movies!");
+            Optional<ButtonType> result = alert.showAndWait();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
     }
 
     private boolean ShowDeletionConfirmationBox(String type) {
@@ -311,12 +345,60 @@ public class Controller {
         }
     }
 
+    public void startNewMovieView(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlPath));
+            Parent mainLayout = loader.load();
+            CreateEditMovieController createEditMovieController = loader.getController();
+            createEditMovieController.setNewMovie();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainLayout));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startEditMovieView(String fxmlPath, Movie movie) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlPath));
+            Parent mainLayout = loader.load();
+            CreateEditMovieController createEditMovieController = loader.getController();
+            createEditMovieController.setMovieToEdit(movie);
+            createEditMovieController.reloadGenresTable();
+            //    newPlaylistController.setManager(this.sM);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainLayout));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void startNewGenreView(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             NewGenreController newGenreController = loader.getController();
+            //    newPlaylistController.setMainController(this);
+            //    newPlaylistController.setManager(this.sM);
+            Stage stage = new Stage();
+            stage.setScene(new Scene(mainLayout));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void startEditGenreView(String fxmlPath) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource(fxmlPath));
+            Parent mainLayout = loader.load();
+            EditGenreController editGenreController = loader.getController();
             //    newPlaylistController.setMainController(this);
             //    newPlaylistController.setManager(this.sM);
             Stage stage = new Stage();
