@@ -35,12 +35,12 @@ public class DBManager {
      * @return a list of all songs
      * @throws SQLException
      */
-    public ArrayList<Movie> getAllMovies() throws SQLException{
+    public List<Movie> getAllMovies() throws SQLException{
         try( Connection con = dataSource.getConnection() ){
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery( "SELECT * FROM Movie" );
 
-            ArrayList<Movie> songs = new ArrayList<>();
+            List<Movie> songs = new ArrayList<>();
             while( rs.next() ){
                 songs.add( getOneMovie( rs ) );
             }
@@ -337,6 +337,36 @@ public class DBManager {
     }
 
     /**
+     * Returns all songs in a list
+     *
+     * @return a list of all songs
+     * @throws SQLException
+     */
+    public List<Genre> getAllGenres() throws SQLException{
+        try( Connection con = dataSource.getConnection() ){
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery( "SELECT * FROM Genre" );
+
+            List<Genre> genres = new ArrayList<>();
+            while( rs.next() ){
+                genres.add( getOneGenre( rs ) );
+            }
+            return genres;
+        }
+    }
+
+    /**
+     * @param rs the resultset from a SQL query
+     * @return a playlist object
+     * @throws SQLException
+     */
+    private Genre getOneGenre(ResultSet rs) throws SQLException{
+        int id = rs.getInt( 1 );
+        String name = rs.getString( 2 );
+        return new Genre( id,name );
+    }
+
+    /**
      * Executes a command to the sql-server and returns the generated keys
      *
      * @param ps
@@ -352,6 +382,4 @@ public class DBManager {
         keys.next();
         return keys.getInt( 1 );
     }
-
-
 }

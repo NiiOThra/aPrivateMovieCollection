@@ -5,6 +5,8 @@ import BE.Movie;
 import DAL.DBManager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GenreManager  {
 
@@ -48,5 +50,9 @@ public class GenreManager  {
     public void addGenreToMovie(Genre genre, Movie movie) throws Exception
     {
         dbMgr.addGenreToMovie(movie, genre);
+    }
+
+    public List<Genre> getAllGenres() throws Exception {
+        return dbMgr.getAllGenres();
     }
 }

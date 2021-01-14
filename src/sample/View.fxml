@@ -31,7 +31,7 @@
             </MenuBar>
             <AnchorPane layoutY="25.0" prefHeight="107.0" prefWidth="1200.0">
                <children>
-                  <Button fx:id="btnPlayMovieInVLC" layoutX="555.0" layoutY="28.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Play in VLC" />
+                  <Button fx:id="btnPlayMovieInVLC" layoutX="555.0" layoutY="28.0" mnemonicParsing="false" onAction="#playMovie" prefHeight="25.0" prefWidth="90.0" text="Play in VLC" />
                   <TextField fx:id="txtFilter" layoutX="991.0" layoutY="28.0" prefHeight="25.0" prefWidth="185.0" />
                   <Label layoutX="943.0" layoutY="32.0" prefHeight="17.0" prefWidth="48.0" text="Search:" />
                   <Button fx:id="btnDebug" layoutX="350.0" layoutY="28.0" mnemonicParsing="false" onAction="#debug" text="Debug" />
@@ -42,29 +42,29 @@
                   <Label text="Genres" />
                   <TableView fx:id="genresTable" layoutY="17.0" prefHeight="363.0" prefWidth="149.0">
                     <columns>
-                      <TableColumn fx:id="genresColumn" prefWidth="148.0" text="Genres" />
+                      <TableColumn fx:id="genresColumnName" prefWidth="148.0" text="Genres" />
                     </columns>
                   </TableView>
                   <Button fx:id="btnNewGenre" layoutY="386.0" mnemonicParsing="false" onAction="#dialogNewGenre" text="New" />
-                  <Button layoutX="46.0" layoutY="386.0" mnemonicParsing="false" text="Edit" />
-                  <Button layoutX="90.0" layoutY="386.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="59.0" text="Delete" />
+                  <Button fx:id="btnEditGenre" layoutX="46.0" layoutY="386.0" mnemonicParsing="false" onAction="#dialogEditGenre" text="Edit" />
+                  <Button fx:id="btnDeleteGenre" layoutX="90.0" layoutY="386.0" mnemonicParsing="false" onAction="#dialogDeleteGenre" prefHeight="25.0" prefWidth="59.0" text="Delete" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="186.0" layoutY="138.0" prefHeight="424.0" prefWidth="991.0">
                <children>
                   <Label text="Movies in Genres" />
-                  <TableView fx:id="moviesInGenresTable" layoutY="23.0" prefHeight="363.0" prefWidth="993.0">
+                  <TableView fx:id="moviesTable" layoutY="23.0" prefHeight="363.0" prefWidth="993.0">
                      <columns>
-                        <TableColumn fx:id="titleColumn" prefWidth="346.0" text="Title" />
-                        <TableColumn fx:id="genresColumn" minWidth="0.0" prefWidth="408.0" text="Genre(s)" />
-                        <TableColumn fx:id="durationColumn" minWidth="7.0" prefWidth="68.0" text="Duration" />
-                        <TableColumn fx:id="myRatingColumn" minWidth="0.0" prefWidth="76.0" text="My Rating" />
-                        <TableColumn fx:id="imdbRatingColumn" minWidth="7.0" prefWidth="94.0" text="IMDB Rating" />
+                        <TableColumn fx:id="titleColumn" prefWidth="330.0" text="Title" />
+                        <TableColumn fx:id="genresColumn" minWidth="0.0" prefWidth="389.0" text="Genre(s)" />
+                        <TableColumn fx:id="myRatingColumn" minWidth="0.0" prefWidth="63.0" text="My Rating" />
+                        <TableColumn fx:id="imdbRatingColumn" minWidth="7.0" prefWidth="78.0" text="IMDB Rating" />
+                        <TableColumn fx:id="lastViewColumn" minWidth="7.0" prefWidth="132.0" text="Lastview" />
                      </columns>
                   </TableView>
-                  <Button layoutX="938.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Delete" />
-                  <Button layoutX="877.0" layoutY="392.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="55.0" text="Edit" />
-                  <Button layoutX="797.0" layoutY="392.0" mnemonicParsing="false" text="Add movie" />
+                  <Button fx:id="btnDeleteMovie" layoutX="938.0" layoutY="392.0" mnemonicParsing="false" onAction="#dialogDeleteMovie" prefHeight="17.0" prefWidth="55.0" text="Delete" />
+                  <Button fx:id="btnEditMovie" layoutX="877.0" layoutY="392.0" mnemonicParsing="false" onAction="#dialogEditMovie" prefHeight="17.0" prefWidth="55.0" text="Edit" />
+                  <Button fx:id="btnAddMovie" layoutX="797.0" layoutY="392.0" mnemonicParsing="false" onAction="#dialogNewMovie" text="Add movie" />
                </children>
             </AnchorPane>
          </children>
