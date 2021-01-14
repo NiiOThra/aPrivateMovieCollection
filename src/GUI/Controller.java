@@ -352,6 +352,7 @@ public class Controller {
             Parent mainLayout = loader.load();
             CreateEditMovieController createEditMovieController = loader.getController();
             createEditMovieController.setNewMovie();
+            createEditMovieController.reloadGenresTable();
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
             stage.show();

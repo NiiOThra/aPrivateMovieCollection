@@ -125,7 +125,7 @@ public class DBManager {
             ps.setFloat( 2, movie.getImdbRating() );
             ps.setFloat( 3, movie.getMyRating() );
             ps.setString( 4, movie.getFileLink());
-            ps.setString( 5, movie.getLastView().toString() );
+            ps.setString( 5, new Timestamp(System.currentTimeMillis()).toString() );
 
             int id = executeAndGetID( ps );
 

@@ -10,8 +10,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.net.URI;
 import java.util.List;
 
 public class CreateEditMovieController {
@@ -103,12 +108,22 @@ public class CreateEditMovieController {
     }
 
     public void searchImdb(ActionEvent actionEvent) {
+        try {
+            URI uri = new URI(makeImdbUrl());
+            Desktop dt = Desktop.getDesktop();
+            dt.browse(uri);
+        } catch (Exception ex) {
+        }
+    }
 
+    private String makeImdbUrl() {
+        return "https://www.imdb.com/find?q=" + txtTitle.getText().replace(' ', '+');
     }
 
     public void save(ActionEvent actionEvent) {
         try {
             if (movieToEdit.getId() == -1) {
+                updateEditMovie();
                 mMgr.add(movieToEdit);
             } else {
                 updateEditMovie();

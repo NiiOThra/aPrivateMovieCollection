@@ -38,7 +38,16 @@ public class MovieManager {
     }
 
     public Movie add(Movie movie) throws Exception {
-        return dbMgr.addMovie(movie);
+        Movie duplicate = dbMgr.getMovieByName(movie.getTitle());
+        if (duplicate == null) {
+            Movie addedMovie = dbMgr.addMovie(movie);
+            for (Genre g: movie.getGenres()){
+                dbMgr.addGenreToMovie(addedMovie,g);
+            }
+            return addedMovie;
+        } else {
+            return duplicate;
+        }
     }
 
     public void delete(Movie movie) throws Exception {
