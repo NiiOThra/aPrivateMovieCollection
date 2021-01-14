@@ -26,7 +26,6 @@ public class NewGenreController {
 
     private void doClose(){
 
-
     }
 
     public void close(ActionEvent actionEvent) {

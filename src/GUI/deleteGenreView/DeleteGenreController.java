@@ -12,7 +12,6 @@ public class DeleteGenreController {
 
     @FXML
     Button btnYes;
-
     @FXML
     Button btnNo;
 

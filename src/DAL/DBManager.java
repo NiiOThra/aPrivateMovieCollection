@@ -14,7 +14,6 @@ public class DBManager {
     private SQLServerDataSource dataSource;
     private static DBManager instance = null;
 
-
     public DBManager()
     {
         dataSource = new SQLServerDataSource();
@@ -27,7 +26,6 @@ public class DBManager {
     public Connection getConnection() throws SQLServerException {
         return dataSource.getConnection();
     }
-
 
     /**
      * Returns all songs in a list
@@ -335,9 +333,6 @@ public class DBManager {
             PreparedStatement ps = con.prepareStatement( sql );
             ps.setInt( 1, genreId);
             ps.executeUpdate();
-
-
-
 
             String sql1 = "DELETE FROM Genre WHERE Id = ?";
             PreparedStatement ps1 = con.prepareStatement( sql1 );

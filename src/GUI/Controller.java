@@ -32,61 +32,42 @@ public class Controller {
 
     @FXML
     private Button btnPlayMovieInVLC;
-
     @FXML
     private TextField txtFilter;
-
     @FXML
     private Button btnRefresh;
-
     @FXML
     private TableView genresTable;
-
     @FXML
     private TableColumn<Genre, String> genresColumnName;
-
     @FXML
     private TableView<Movie> moviesTable;
-
     @FXML
     private TableColumn<Movie, String> titleColumn;
-
     @FXML
     private TableColumn<Movie, String> genresColumn;
-
     @FXML
     private TableColumn<Movie, String> myRatingColumn;
-
     @FXML
     private TableColumn<Movie, String> imdbRatingColumn;
-
     @FXML
     private TableColumn<Movie, String> lastViewColumn;
-
     @FXML
     private Button closeBtn;
-
     @FXML
     private Button newGenresBtn;
-
     @FXML
     private Button btnDebug;
-
     @FXML
     private Button btnAddMovie;
-
     @FXML
     private Button btnEditMovie;
-
     @FXML
     private Button btnDeleteMovie;
-
     @FXML
     private Button btnNewGenre;
-
     @FXML
     private Button btnEditGenre;
-
     @FXML
     private Button btnDeleteGenre;
 
@@ -230,7 +211,6 @@ public class Controller {
 
         //this.moviesTable.setItems(filteredList);
         //filteredList.sorted().comparatorProperty().bind(this.moviesTable.comparatorProperty());
-
 
     }
 

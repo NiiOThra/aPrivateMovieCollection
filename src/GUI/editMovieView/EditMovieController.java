@@ -22,7 +22,6 @@ public class EditMovieController {
     private Button btnSave;
     @FXML
     private Button btnClose;
-
     @FXML
     private TextField txtTitle;
     @FXML
@@ -31,10 +30,8 @@ public class EditMovieController {
     private TextField txtImdbRating;
     @FXML
     private TextField txtFileLink;
-
     @FXML
     private TableView<Genre> genreTable;
-
     @FXML
     private TableColumn<Genre, String> titleColumn;
 
