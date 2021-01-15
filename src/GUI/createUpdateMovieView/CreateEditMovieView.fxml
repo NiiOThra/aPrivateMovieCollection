@@ -50,7 +50,7 @@
       <Button fx:id="btnChooseFile" layoutX="272.0" layoutY="408.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="25.0" prefWidth="66.0" text="Choose.." />
       <TableView fx:id="genreTable" layoutX="116.0" layoutY="115.0" prefHeight="218.0" prefWidth="149.0">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="titleColumn" prefWidth="148.0" text="Name" />
         </columns>
       </TableView>
    </children>
