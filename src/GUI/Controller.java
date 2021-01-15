@@ -53,8 +53,6 @@ public class Controller {
     @FXML
     private Button newGenresBtn;
     @FXML
-    private Button btnDebug;
-    @FXML
     private Button btnAddMovie;
     @FXML
     private Button btnEditMovie;
@@ -168,46 +166,6 @@ public class Controller {
     public void refreshUI() {
         reloadGenresTable();
         reloadMoviesTable();
-    }
-
-    public void debug(ActionEvent actionEvent) {
-
-        java.util.Date date = new java.util.Date();
-
-        try {
-            refreshUI();
-
-            var expiredMovies = mMgr.getExpiredMovies();
-
-            Movie movie = mMgr.getById(3);
-            String test = movie.getGenresString();
-            List<Movie> movies = mMgr.getAllMovies();
-            //gMgr.addGenreToMovie(gMgr.add("TestGenre"),m);
-
-            // Genre addedGenre = gMgr.add("TestGenre");
-
-            //addedGenre.setName("UpdatedGenre");
-            // gMgr.update(addedGenre);
-
-            // gMgr.delete(addedGenre);
-
-            //Movie addedMovie = mMgr.add(new Movie("Test",2f,2f, "test",new java.sql.Timestamp(date.getTime()), new ArrayList<Genre>()));
-            // addedMovie.setTitle("UpdateMovie");
-            // mMgr.update(addedMovie);
-
-            // mMgr.delete(addedMovie);
-
-        } catch (Exception throwables) {
-            throwables.printStackTrace();
-        }
-    }
-
-    public void filterMovies() {
-        //FilteredList<Movie> filteredList = MovieList.filtered(x -> x.getTitle().toLowerCase().contains(txtFilter.getText().toLowerCase()) || x.getGenresString().toLowerCase().contains(txtFilter.getText().toLowerCase()));
-
-        //this.moviesTable.setItems(filteredList);
-        //filteredList.sorted().comparatorProperty().bind(this.moviesTable.comparatorProperty());
-
     }
 
     public void close(ActionEvent actionEvent) {
@@ -331,6 +289,7 @@ public class Controller {
             Parent mainLayout = loader.load();
             CreateEditMovieController createEditMovieController = loader.getController();
             createEditMovieController.setNewMovie();
+            createEditMovieController.setMainController(this);
             createEditMovieController.reloadGenresTable();
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
@@ -348,7 +307,7 @@ public class Controller {
             CreateEditMovieController createEditMovieController = loader.getController();
             createEditMovieController.setMovieToEdit(movie);
             createEditMovieController.reloadGenresTable();
-            //    newPlaylistController.setManager(this.sM);
+            createEditMovieController.setMainController(this);
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
             stage.show();
@@ -363,6 +322,7 @@ public class Controller {
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             CreateEditGenreController createEditGenreController = loader.getController();
+            createEditGenreController.setMainController(this);
             createEditGenreController.setNewGenre();
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
@@ -378,6 +338,7 @@ public class Controller {
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
             CreateEditGenreController createEditGenreController = loader.getController();
+            createEditGenreController.setMainController(this);
             createEditGenreController.setGenreToEdit(genre);
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));

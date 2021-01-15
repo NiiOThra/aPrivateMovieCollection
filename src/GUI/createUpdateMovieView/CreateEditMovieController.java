@@ -4,6 +4,7 @@ import BE.Genre;
 import BE.Movie;
 import BLL.GenreManager;
 import BLL.MovieManager;
+import GUI.Controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -52,6 +53,7 @@ public class CreateEditMovieController {
     private static final GenreManager gMgr = GenreManager.getInstance();
 
     private Movie movieToEdit;
+    private Controller mainController;
 
     public void setNewMovie() {
         setup(true);
@@ -184,7 +186,12 @@ public class CreateEditMovieController {
     }
 
     public void close() {
+        mainController.refreshUI();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
+    }
+
+    public void setMainController(Controller controller) {
+        this.mainController = controller;
     }
 }

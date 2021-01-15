@@ -3,6 +3,7 @@ package GUI.createUpdateGenreView;
 import BE.Genre;
 import BE.Movie;
 import BLL.GenreManager;
+import GUI.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -28,6 +29,13 @@ public class CreateEditGenreController {
     private Genre genreToEdit;
 
     private static final GenreManager gMgr = GenreManager.getInstance();
+
+    private Controller mainController;
+
+
+    public void setMainController(Controller controller) {
+        this.mainController = controller;
+    }
 
     public void setNewGenre() {
         setup(true);
@@ -75,6 +83,7 @@ public class CreateEditGenreController {
     }
 
     public void close() {
+        mainController.refreshUI();
         Stage stage = (Stage) cancelBtn.getScene().getWindow();
         stage.close();
     }
