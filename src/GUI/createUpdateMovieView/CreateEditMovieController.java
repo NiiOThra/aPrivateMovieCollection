@@ -13,11 +13,14 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.File;
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 public class CreateEditMovieController {
     @FXML
@@ -63,7 +66,7 @@ public class CreateEditMovieController {
         setup(false);
     }
 
-    public void updateEditMovie() {
+    public void updateEditMovieValues() {
         this.movieToEdit.setTitle(txtTitle.getText());
         this.movieToEdit.setImdbRating(Float.parseFloat(txtImdbRating.getText()));
         this.movieToEdit.setMyRating(Float.parseFloat(txtMyRating.getText()));
@@ -113,23 +116,71 @@ public class CreateEditMovieController {
         }
     }
 
+    public void chooseFile(ActionEvent actionEvent) {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Video File");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("MP4", "*.mp4"),
+                new FileChooser.ExtensionFilter("MPEG4", "*.mpeg4")
+        );
+
+        File file = fileChooser.showOpenDialog(new Stage());
+        if (file != null) {
+            txtFileLink.setText(file.getAbsolutePath());
+            movieToEdit.setFileLink(file.getAbsolutePath());
+        }
+
+    }
+
     private String makeImdbUrl() {
         return "https://www.imdb.com/find?q=" + txtTitle.getText().replace(' ', '+');
     }
 
     public void save(ActionEvent actionEvent) {
+
+        float imdbRating = -1;
+        float myRating = -1;
+
+        try {
+            myRating = Float.parseFloat(txtMyRating.getText());
+            imdbRating = Float.parseFloat(txtImdbRating.getText());
+            updateEditMovieValues();
+
+            if (imdbRating != -1 && myRating != -1 &&
+                    imdbRating > 0 && imdbRating < 10 &&
+                    myRating > 0 && myRating < 10) {
+                doSave();
+                close();
+            } else {
+                ShowErrorBox();
+            }
+
+        } catch (Exception e) {
+            ShowErrorBox();
+        }
+    }
+
+    private void ShowErrorBox() {
+        ButtonType ok = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        Alert alert = new Alert(Alert.AlertType.WARNING,
+                "Ratings has be to between 1 - 10",
+                ok);
+
+        alert.setTitle("Rating error!");
+        Optional<ButtonType> result = alert.showAndWait();
+    }
+
+    private void doSave() {
         try {
             if (movieToEdit.getId() == -1) {
-                updateEditMovie();
                 mMgr.add(movieToEdit);
             } else {
-                updateEditMovie();
                 mMgr.update(movieToEdit);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        close();
     }
 
     public void close() {

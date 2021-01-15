@@ -193,7 +193,7 @@ public class DBManager {
     }
 
     /**
-     * Adds a song to a playlist
+     * Adds a movie to a genre
      *
      * @param movie the song you want to add
      * @param genre the playlist the song is added to

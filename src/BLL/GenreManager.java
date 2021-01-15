@@ -31,6 +31,10 @@ public class GenreManager  {
     {
         return dbMgr.addGenre(new Genre(genre));
     }
+    public Genre add(Genre genre) throws Exception
+    {
+        return dbMgr.addGenre(genre);
+    }
     public void delete(Genre genre) throws Exception
     {
         dbMgr.deleteGenreByID(genre.getId());

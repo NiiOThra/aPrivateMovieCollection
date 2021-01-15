@@ -28,6 +28,10 @@ public class Genre extends BaseEntity{
         this.setName(name);
     }
 
+    public Genre() {
+        this.setId(-1);
+    }
+
     public String getName() {
         return name;
     }

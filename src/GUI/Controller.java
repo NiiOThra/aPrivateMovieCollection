@@ -4,13 +4,9 @@ import BE.Genre;
 import BE.Movie;
 import BLL.GenreManager;
 import BLL.MovieManager;
-import GUI.Dialog.DeleteDialogController;
 import GUI.aboutView.AboutController;
-import GUI.addMovieView.AddMovieController;
 import GUI.createUpdateMovieView.CreateEditMovieController;
-import GUI.editGenreView.EditGenreController;
-import GUI.editMovieView.EditMovieController;
-import GUI.newGenreView.*;
+import GUI.createUpdateGenreView.CreateEditGenreController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -224,11 +220,14 @@ public class Controller {
     }
 
     public void dialogNewGenre() {
-        startNewGenreView("addGenreView/AddGenreView.fxml");
+        startNewGenreView("createUpdateGenreView/CreateEditGenreView.fxml");
     }
 
     public void dialogEditGenre() {
-        startEditGenreView("editGenreView/EditGenreView.fxml");
+        var genreToUpdate = (Genre) genresTable.getSelectionModel().getSelectedItem();
+        if (genreToUpdate != null) {
+            startEditGenreView("createUpdateGenreView/CreateEditGenreView.fxml", genreToUpdate);
+        }
     }
 
     public void dialogDeleteGenre() {
@@ -363,9 +362,8 @@ public class Controller {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
-            NewGenreController newGenreController = loader.getController();
-            //    newPlaylistController.setMainController(this);
-            //    newPlaylistController.setManager(this.sM);
+            CreateEditGenreController createEditGenreController = loader.getController();
+            createEditGenreController.setNewGenre();
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
             stage.show();
@@ -374,14 +372,13 @@ public class Controller {
         }
     }
 
-    public void startEditGenreView(String fxmlPath) {
+    public void startEditGenreView(String fxmlPath, Genre genre) {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource(fxmlPath));
             Parent mainLayout = loader.load();
-            EditGenreController editGenreController = loader.getController();
-            //    newPlaylistController.setMainController(this);
-            //    newPlaylistController.setManager(this.sM);
+            CreateEditGenreController createEditGenreController = loader.getController();
+            createEditGenreController.setGenreToEdit(genre);
             Stage stage = new Stage();
             stage.setScene(new Scene(mainLayout));
             stage.show();

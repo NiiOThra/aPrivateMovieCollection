@@ -29,7 +29,7 @@
       <Button fx:id="btnClose" layoutX="218.0" layoutY="442.0" mnemonicParsing="false" onAction="#close" text="Close" />
       <Button fx:id="btnSave" layoutX="167.0" layoutY="442.0" mnemonicParsing="false" onAction="#save" text="Save" />
       <Button fx:id="btnSearchImdb" layoutX="274.0" layoutY="79.0" mnemonicParsing="false" onAction="#searchImdb" prefHeight="25.0" prefWidth="103.0" text="Search on IMDB" />
-      <TextField fx:id="txtImdbRating" layoutX="116.0" layoutY="375.0" />
+      <TextField fx:id="txtImdbRating" alignment="TOP_CENTER" layoutX="116.0" layoutY="375.0" />
       <TextField fx:id="txtMyRating" alignment="TOP_CENTER" layoutX="116.0" layoutY="342.0" promptText="Optional" />
       <Label layoutX="29.0" layoutY="342.0" text="My Rating:">
          <font>
@@ -47,7 +47,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button fx:id="btnChooseFile" layoutX="272.0" layoutY="408.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" text="Choose.." />
+      <Button fx:id="btnChooseFile" layoutX="272.0" layoutY="408.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="25.0" prefWidth="66.0" text="Choose.." />
       <TableView fx:id="genreTable" layoutX="116.0" layoutY="115.0" prefHeight="218.0" prefWidth="149.0">
         <columns>
           <TableColumn fx:id="titleColumn" prefWidth="75.0" text="Name" />
