@@ -3,9 +3,6 @@ package BLL;
 import BE.Genre;
 import BE.Movie;
 import DAL.DBManager;
-
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class GenreManager  {
@@ -14,11 +11,11 @@ public class GenreManager  {
     private static GenreManager instance = null;
 
     /**
-     * Get-method for retrieving the MusicManager instance.
+     * Get-method for retrieving the GenreManager instance.
      *
-     * @throws NullPointerException Thrown if the MusicManager is not
+     * @throws NullPointerException Thrown if the GenreManager is not
      *         initialized via the <i>init()</i> method.
-     * @return The instance of the MusicManager
+     * @return The instance of the GenreManager
      */
     public static GenreManager getInstance(){
         if( instance == null ){

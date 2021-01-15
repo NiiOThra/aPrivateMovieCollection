@@ -1,7 +1,6 @@
 package GUI.createUpdateGenreView;
 
 import BE.Genre;
-import BE.Movie;
 import BLL.GenreManager;
 import GUI.Controller;
 import javafx.fxml.FXML;
@@ -10,19 +9,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.util.List;
 
 public class CreateEditGenreController {
 
     @FXML
     private Text lblTop;
-
     @FXML
     private TextField txtGenreName;
-
     @FXML
     private Button cancelBtn;
-
     @FXML
     private Button btnSave;
 

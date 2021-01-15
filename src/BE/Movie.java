@@ -49,8 +49,8 @@ public class Movie extends BaseEntity {
      *
      * @param id       ID of the movie in the database.
      * @param title    Title of the movie.
-     * @param category Category of the movie.
-     * @param filepath Filename of the movie.
+     * @param genres Genres of the movie.
+     * @param fileLink Filepath of the movie.
      */
     public Movie(int id, String title, float myRating, float imdbRating, String fileLink, java.sql.Timestamp lastView, List<Genre> genres) {
         this.setId(id);
@@ -116,9 +116,9 @@ public class Movie extends BaseEntity {
 
 
     /**
-     * New toString method for Track, used for formatting the view in the ListView in GUI
+     * New toString method for Movie, used for formatting the view in the ListView in GUI
      *
-     * @return "{Track Title} - {Track Artist}
+     * @return "{Movie Title}"
      */
     @Override
     public String toString() {

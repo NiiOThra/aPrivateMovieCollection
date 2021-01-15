@@ -1,6 +1,5 @@
 package BE;
 
-import java.sql.Date;
 
 public class Genre extends BaseEntity{
 
