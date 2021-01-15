@@ -229,20 +229,21 @@ public class Controller {
         try {
             var expiredMovies = mMgr.getExpiredMovies();
 
-            String moviesString = "";
+            if (expiredMovies.stream().count() > 0) {
+                String moviesString = "";
 
-            for (Movie m : expiredMovies) {
-                moviesString += m.toString() + "\n";
+                for (Movie m : expiredMovies) {
+                    moviesString += m.toString() + "\n";
+                }
+
+                ButtonType yes = new ButtonType("Understood", ButtonBar.ButtonData.OK_DONE);
+                Alert alert = new Alert(Alert.AlertType.WARNING,
+                        moviesString,
+                        yes);
+
+                alert.setTitle(expiredMovies.stream().count() + " expired movies!");
+                Optional<ButtonType> result = alert.showAndWait();
             }
-
-            ButtonType yes = new ButtonType("Understood", ButtonBar.ButtonData.OK_DONE);
-            Alert alert = new Alert(Alert.AlertType.WARNING,
-                    moviesString,
-                    yes);
-
-            alert.setTitle(expiredMovies.stream().count() + " expired movies!");
-            Optional<ButtonType> result = alert.showAndWait();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
