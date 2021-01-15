@@ -156,6 +156,7 @@ public class Controller {
     public void playMovie(ActionEvent actionEvent) {
         try {
             mMgr.playMovie(moviesTable.getSelectionModel().getSelectedItem());
+            refreshUI();
         } catch (Exception e) {
             e.printStackTrace();
         }
