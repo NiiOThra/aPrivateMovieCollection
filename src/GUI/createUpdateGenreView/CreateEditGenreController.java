@@ -10,6 +10,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
+/**
+ * The type Create edit genre controller.
+ */
 public class CreateEditGenreController {
 
     @FXML
@@ -28,14 +31,27 @@ public class CreateEditGenreController {
     private Controller mainController;
 
 
+    /**
+     * Sets main controller.
+     *
+     * @param controller the controller
+     */
     public void setMainController(Controller controller) {
         this.mainController = controller;
     }
 
+    /**
+     * Sets new genre.
+     */
     public void setNewGenre() {
         setup(true);
     }
 
+    /**
+     * Sets genre to edit.
+     *
+     * @param genre the genre
+     */
     public void setGenreToEdit(Genre genre) {
         this.genreToEdit = genre;
         txtGenreName.setText(genreToEdit.getName());
@@ -55,16 +71,25 @@ public class CreateEditGenreController {
         this.lblTop.setText(newLabel);
     }
 
+    /**
+     * Update edit movie values.
+     */
     public void updateEditMovieValues() {
         this.genreToEdit.setName(txtGenreName.getText());
     }
 
+    /**
+     * Save.
+     */
     public void save(){
         updateEditMovieValues();
         doSave();
         close();
     }
 
+    /**
+     * Do save.
+     */
     public void doSave(){
         try {
             if (genreToEdit.getId() == -1) {
@@ -77,6 +102,9 @@ public class CreateEditGenreController {
         }
     }
 
+    /**
+     * Close.
+     */
     public void close() {
         mainController.refreshUI();
         Stage stage = (Stage) cancelBtn.getScene().getWindow();

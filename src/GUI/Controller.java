@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 public class Controller {
@@ -71,6 +72,7 @@ public class Controller {
 
     private static final MovieManager mMgr = MovieManager.getInstance();
     private static final GenreManager gMgr = GenreManager.getInstance();
+
 
     public void reloadGenresTable() {
         try {

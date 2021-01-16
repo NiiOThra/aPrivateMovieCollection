@@ -28,9 +28,9 @@ public class DBManager {
     }
 
     /**
-     * Returns all songs in a list
+     * Returns all movies in a list
      *
-     * @return a list of all songs
+     * @return a list of all movies
      * @throws SQLException
      */
     public List<Movie> getAllMovies() throws SQLException{
@@ -38,16 +38,16 @@ public class DBManager {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery( "SELECT * FROM Movie" );
 
-            List<Movie> songs = new ArrayList<>();
+            List<Movie> movies = new ArrayList<>();
             while( rs.next() ){
-                songs.add( getOneMovie( rs ) );
+                movies.add( getOneMovie( rs ) );
             }
-            return songs;
+            return movies;
         }
     }
     /**
      * @param rs the resultset from a SQL query
-     * @return a playlist object
+     * @return a movie object
      * @throws SQLException
      */
     private Movie getOneMovie( ResultSet rs ) throws SQLException{
@@ -69,10 +69,10 @@ public class DBManager {
     }
 
     /**
-     * Returns a song based on the ID
+     * Returns a movie based on the ID
      *
-     * @param movieId the id of the song
-     * @return the given song
+     * @param movieId the id of the movie
+     * @return the given movie
      * @throws SQLException
      */
     public Movie getMovieByID( int movieId ) throws SQLException{
@@ -89,10 +89,10 @@ public class DBManager {
         return null;
     }
     /**
-     * Returns a song based on the ID
+     * Returns a movie based on the ID
      *
-     * @param title the id of the song
-     * @return the given song
+     * @param title the id of the movie
+     * @return the given movie
      * @throws SQLException
      */
     public Movie getMovieByName(String title ) throws SQLException{
@@ -109,10 +109,10 @@ public class DBManager {
         return null;
     }
     /**
-     * Adds a song to the database
+     * Adds a movie to the database
      *
-     * @param movie the song you want to add
-     * @return the song added
+     * @param movie the movie you want to add
+     * @return the movie added
      * @throws SQLException
      */
     public Movie addMovie( Movie movie ) throws SQLException {
@@ -131,10 +131,10 @@ public class DBManager {
         }
     }
     /**
-     * Delets a song based on the id - both from the "song" table and the
-     * "playlistsong" table
+     * Deletes a movie based on the id - both from the "movie" table and the
+     * "MovieGenre" table
      *
-     * @param movieId the id of the song
+     * @param movieId the id of the movie
      * @throws SQLException
      */
     public void deleteMovieByID( int movieId) throws SQLException{
@@ -168,9 +168,9 @@ public class DBManager {
         }
     }
     /**
-     * Updates a song in the database
+     * Updates a movie in the database
      *
-     * @param m the song you want to update
+     * @param m the movie you want to update
      * @throws SQLException
      */
     public void updateMovie( Movie m ) throws SQLException{
@@ -195,8 +195,8 @@ public class DBManager {
     /**
      * Adds a movie to a genre
      *
-     * @param movie the song you want to add
-     * @param genre the playlist the song is added to
+     * @param movie the movie you want to add
+     * @param genre the genre the movie is added to
      * @throws SQLException
      */
     public void addGenreToMovie( Movie movie, Genre genre ) throws SQLException{
@@ -210,15 +210,15 @@ public class DBManager {
 
             int affectedRows = ps.executeUpdate();
             if( affectedRows == 0 ){
-                throw new SQLException( "Unable to add song to playlist." );
+                throw new SQLException( "Unable to add movie to genre." );
             }
         }
     }
     /**
-     * Returns the songs of a playlist in a list
+     * Returns the genre of a movie in a list
      *
      * @param movieId the id of the list
-     * @return a list of songs linked to the same playlist
+     * @return a list of movies linked to the same genre
      * @throws SQLException
      */
     public List<Genre> getGenresInMovie(int movieId ) throws SQLException{
@@ -239,10 +239,10 @@ public class DBManager {
 
 
     /**
-     * Returns a playlist from the database, based on the ID
+     * Returns a genre from the database, based on the ID
      *
-     * @param searchName the id of the playlist
-     * @return the Playlist
+     * @param searchName the id of the genre
+     * @return the genre
      * @throws SQLException
      */
     public Genre getGenreByName(String searchName ) throws SQLException{
@@ -261,10 +261,10 @@ public class DBManager {
         return null;
     }
     /**
-     * Returns a playlist from the database, based on the ID
+     * Returns a genre from the database, based on the ID
      *
-     * @param genreId the id of the playlist
-     * @return the Playlist
+     * @param genreId the id of the genre
+     * @return the genre
      * @throws SQLException
      */
     public Genre getGenreByID(int genreId ) throws SQLException{
@@ -283,9 +283,9 @@ public class DBManager {
         return null;
     }
     /**
-     * Updates information in a playlist
+     * Updates information in a genre
      *
-     * @param g the playlist you want to update
+     * @param g the genre you want to update
      * @throws SQLException
      */
     public void updateGenre( Genre g ) throws SQLException{
@@ -303,10 +303,10 @@ public class DBManager {
         }
     }
     /**
-     * Adds a playlist to the database
+     * Adds a genre to the database
      *
-     * @param genre the playlist you want to add
-     * @return the playlist you added
+     * @param genre the genre you want to add
+     * @return the genre you added
      * @throws SQLException
      */
     public Genre addGenre( Genre genre) throws SQLException{
@@ -321,11 +321,11 @@ public class DBManager {
         }
     }
     /**
-     * Deletes a playlist in the database based on the ID to make sure that
+     * Deletes a genre in the database based on the ID to make sure that
      * there can be only one
      *
-     * @param genreId the ID of the playlist
-     * @throws SQLException if the playlistID does not exist
+     * @param genreId the ID of the genre
+     * @throws SQLException if the genreId does not exist
      */
     public void deleteGenreByID( int genreId) throws SQLException{
         try( Connection con = dataSource.getConnection() ){
@@ -345,9 +345,9 @@ public class DBManager {
     }
 
     /**
-     * Returns all songs in a list
+     * Returns all movies in a list
      *
-     * @return a list of all songs
+     * @return a list of all movies
      * @throws SQLException
      */
     public List<Genre> getAllGenres() throws SQLException{
@@ -365,7 +365,7 @@ public class DBManager {
 
     /**
      * @param rs the resultset from a SQL query
-     * @return a playlist object
+     * @return a genre object
      * @throws SQLException
      */
     private Genre getOneGenre(ResultSet rs) throws SQLException{

@@ -23,7 +23,11 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * The type Create edit movie controller.
+ */
 public class CreateEditMovieController {
+
     @FXML
     public Label lblTop;
     @FXML
@@ -55,10 +59,18 @@ public class CreateEditMovieController {
     private Movie movieToEdit;
     private Controller mainController;
 
+    /**
+     * Sets new movie.
+     */
     public void setNewMovie() {
         setup(true);
     }
 
+    /**
+     * Sets movie to edit.
+     *
+     * @param movie the movie
+     */
     public void setMovieToEdit(Movie movie) {
         this.movieToEdit = movie;
         txtTitle.setText(movieToEdit.getTitle());
@@ -68,6 +80,9 @@ public class CreateEditMovieController {
         setup(false);
     }
 
+    /**
+     * Update edit movie values.
+     */
     public void updateEditMovieValues() {
         this.movieToEdit.setTitle(txtTitle.getText());
         this.movieToEdit.setImdbRating(Float.parseFloat(txtImdbRating.getText()));
@@ -90,6 +105,9 @@ public class CreateEditMovieController {
         this.lblTop.setText(newLabel);
     }
 
+    /**
+     * Reload genres table.
+     */
     public void reloadGenresTable() {
         try {
             GenreList = FXCollections.observableList(gMgr.getAllGenres());
@@ -109,6 +127,11 @@ public class CreateEditMovieController {
         }
     }
 
+    /**
+     * Search imdb.
+     *
+     * @param actionEvent the action event
+     */
     public void searchImdb(ActionEvent actionEvent) {
         try {
             URI uri = new URI(makeImdbUrl());
@@ -118,6 +141,11 @@ public class CreateEditMovieController {
         }
     }
 
+    /**
+     * Choose file.
+     *
+     * @param actionEvent the action event
+     */
     public void chooseFile(ActionEvent actionEvent) {
 
         FileChooser fileChooser = new FileChooser();
@@ -139,6 +167,11 @@ public class CreateEditMovieController {
         return "https://www.imdb.com/find?q=" + txtTitle.getText().replace(' ', '+');
     }
 
+    /**
+     * Save.
+     *
+     * @param actionEvent the action event
+     */
     public void save(ActionEvent actionEvent) {
 
         float imdbRating = -1;
@@ -185,12 +218,20 @@ public class CreateEditMovieController {
         }
     }
 
+    /**
+     * Close.
+     */
     public void close() {
         mainController.refreshUI();
         Stage stage = (Stage) btnClose.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Sets main controller.
+     *
+     * @param controller the controller
+     */
     public void setMainController(Controller controller) {
         this.mainController = controller;
     }

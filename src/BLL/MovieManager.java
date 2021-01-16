@@ -9,6 +9,9 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Movie manager.
+ */
 public class MovieManager {
 
     private DBManager dbMgr = new DBManager();
@@ -17,11 +20,10 @@ public class MovieManager {
     private static VlcHandler vlcHandler = new VlcHandler();
 
     /**
-     * Get-method for retrieving the MusicManager instance.
+     * Get-method for retrieving the MovieManager instance.
      *
-     * @return The instance of the MusicManager
-     * @throws NullPointerException Thrown if the MusicManager is not
-     *                              initialized via the <i>init()</i> method.
+     * @return The instance of the MovieManager
+     * @throws NullPointerException Thrown if the MovieManager is not                              initialized via the <i>init()</i> method.
      */
     public static MovieManager getInstance() {
         if (instance == null) {
@@ -31,12 +33,27 @@ public class MovieManager {
         }
     }
 
+
+    /**
+     * Plays movie.
+     *
+     * @param movie the movie
+     * @throws Exception the exception
+     */
     public void playMovie(Movie movie) throws Exception {
         movie.setLastView(new Timestamp(System.currentTimeMillis()));
         dbMgr.updateMovie(movie);
         vlcHandler.OpenVlc(movie);
     }
 
+
+    /**
+     * Adds movie.
+     *
+     * @param movie the movie
+     * @return the movie
+     * @throws Exception the exception
+     */
     public Movie add(Movie movie) throws Exception {
         Movie duplicate = dbMgr.getMovieByName(movie.getTitle());
         if (duplicate == null) {
@@ -50,10 +67,24 @@ public class MovieManager {
         }
     }
 
+
+    /**
+     * Deletes movie.
+     *
+     * @param movie the movie
+     * @throws Exception the exception
+     */
     public void delete(Movie movie) throws Exception {
         dbMgr.deleteMovieByID(movie.getId());
     }
 
+
+    /**
+     * Updates movie.
+     *
+     * @param movie the movie
+     * @throws Exception the exception
+     */
     public void update(Movie movie) throws Exception {
         dbMgr.deleteGenresOnMovie(movie.getId());
 
@@ -64,18 +95,48 @@ public class MovieManager {
         dbMgr.updateMovie(movie);
     }
 
+
+    /**
+     * Gets movie by id.
+     *
+     * @param movieId the movie id
+     * @return the movie id
+     * @throws Exception the exception
+     */
     public Movie getById(int movieId) throws Exception {
         return dbMgr.getMovieByID(movieId);
     }
 
+
+    /**
+     * Gets movie by name.
+     *
+     * @param name the name
+     * @return movie by name
+     * @throws Exception the exception
+     */
     public Movie getByName(String name) throws Exception {
         return dbMgr.getMovieByName(name);
     }
 
+
+    /**
+     * Gets all movies.
+     *
+     * @return all movies
+     * @throws Exception the exception
+     */
     public List<Movie> getAllMovies() throws Exception {
         return dbMgr.getAllMovies();
     }
 
+
+    /**
+     * Gets expired movies.
+     *
+     * @return the expired movies
+     * @throws Exception the exception
+     */
     public List<Movie> getExpiredMovies() throws Exception {
         List<Movie> expiredMovies = new ArrayList<>();
         var allMovies = dbMgr.getAllMovies();
@@ -94,6 +155,14 @@ public class MovieManager {
         return expiredMovies;
     }
 
+
+    /**
+     * Compares two timestamps.
+     *
+     * @param currentTime the current time
+     * @param oldTime     the old time
+     * @return time timestamp
+     */
     public static long compareTwoTimeStamps(java.sql.Timestamp currentTime, java.sql.Timestamp oldTime) {
         long milliseconds1 = oldTime.getTime();
         long milliseconds2 = currentTime.getTime();
